@@ -1,0 +1,85 @@
+###########################
+# Aliases
+###########################
+
+# Take a look at https://github.com/dmac/dotfiles/blob/master/.slate
+# 
+
+alias sox screenOriginX
+alias soy screenOriginY
+alias ssx screenSizeX
+alias ssy screenSizeY
+
+# ----------------
+# Window positions
+# ----------------
+alias full          move screenOriginX;screenOriginY screenSizeX;screenSizeY
+# left
+alias leftHalf      push left   bar-resize:screenSizeX/2
+alias leftThird     push left   bar-resize:screenSizeX/3
+alias leftQuarter   push left   bar-resize:screenSizeX/4
+# right
+alias rightHalf     push right  bar-resize:screenSizeX/2
+alias rightThird    push right  bar-resize:screenSizeX/3
+alias rightQuarter  push right  bar-resize:screenSizeX/4
+# top
+alias topHalf       push up     bar-resize:screenSizeY/2
+alias topThird      push up     bar-resize:screenSizeY/3
+alias topQuarter    push up     bar-resize:screenSizeY/4
+# bottom
+alias bottomHalf    push down   bar-resize:screenSizeY/2
+alias bottomThird   push down   bar-resize:screenSizeY/3
+alias bottomQuarter push down   bar-resize:screenSizeY/4
+# other
+alias topLeft       corner top-left resize:screenSizeX/2;screenSizeY/2
+alias topRight      corner top-right resize:screenSizeX/2;screenSizeY/2
+alias bottomLeft    corner bottom-left resize:screenSizeX/2;screenSizeY/2
+alias bottomRight   corner bottom-right resize:screenSizeX/2;screenSizeY/2
+
+# ----------------
+# Commands
+# ----------------
+alias leftCommand   chain ${leftHalf} | ${leftThird} | ${leftQuarter}
+alias rightCommand  chain ${rightHalf} | ${rightThird} | ${rightQuarter}
+alias topCommand    chain ${topHalf} | ${topThird} | ${topQuarter}
+alias bottomCommand chain ${bottomHalf} | ${bottomThird} | ${bottomQuarter}
+
+############################
+# Bindings
+############################
+
+bind f:f4:toggle      ${full}
+bind i:f4:toggle      ${topCommand}
+bind ,:f4:toggle      ${bottomCommand}
+bind j:f4:toggle      ${leftCommand}
+bind l:f4:toggle      ${rightCommand}
+bind u:f4:toggle      ${topLeft}
+bind o:f4:toggle      ${topRight}
+bind m:f4:toggle      ${bottomLeft}
+bind .:f4:toggle      ${bottomRight}
+
+bind g:f4             grid
+
+bind right:f4:toggle  nudge +10% +0
+bind left:f4:toggle   nudge -10% +0
+bind up:f4:toggle     nudge +0   -10%
+bind down:f4:toggle   nudge +0   +10%
+
+# Reload
+bind r:f4:toggle      relaunch
+
+# Focusing
+bind right:f3:toggle focus right
+bind left:f3:toggle focus left
+
+# Window Hints (Slow)
+# Shows app icons and background apps, spreads icons in the same place.
+# config windowHintsShowIcons true
+# config windowHintsIgnoreHiddenWindows false
+# config windowHintsSpread true
+# bind h:f4             hint
+
+# Don't use undo unless you really have to as it can decrease performance
+# https://github.com/jigish/slate/wiki/Global-Configs#undoOps
+# "This may decrease performance. Snapshots will only be taken if an undo operation exists in your config."
+# bind z:f4             undo
